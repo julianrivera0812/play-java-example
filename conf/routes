@@ -17,3 +17,11 @@ GET     /helloWorld                 controllers.HomeController.helloWorld
 
 # An example controller showing a sample home page
 GET     /json                       controllers.HomeController.toJson
+
+# ExampleController showing diferent HTTP status
+GET     /status200                       controllers.StatusExampleController.status200
+GET     /status401                       controllers.StatusExampleController.status401
+GET     /status500                       controllers.StatusExampleController.status500
+
+
+GET     /downloadPDF                     controllers.StatusExampleController.downloadPDF
