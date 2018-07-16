@@ -1,5 +1,9 @@
 package controllers;
 
+import java.util.Date;
+
+import com.google.gson.Gson;
+
 import play.mvc.*;
 
 import views.html.*;
@@ -18,6 +22,14 @@ public class HomeController extends Controller {
      */
     public Result index() {
         return ok(index.render("Your new application is ready."));
+    }
+    
+    public Result helloWorld() {
+        return ok("Hello world!");
+    }
+    
+    public Result toJson() {
+        return ok(new Gson().toJson(new Date()));
     }
 
 }
