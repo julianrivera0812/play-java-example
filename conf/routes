@@ -41,3 +41,6 @@ GET     /getCookie                  controllers.RoutingController.getCookie(name
 
 # CompositionActions
 GET     /auth                       controllers.ActionCompositionController.authenticated
+
+# ErrorHandler
+GET     /error                      controllers.HomeController.serverError

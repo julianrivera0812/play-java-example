@@ -44,5 +44,9 @@ public class HomeController extends Controller {
     public Result toJson() {
         return ok(new Gson().toJson(new Date()));
     }
+    
+    public Result serverError() throws Exception {
+       throw new Exception("excepción en el servidor");
+    }
 
 }
