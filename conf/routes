@@ -19,9 +19,22 @@ GET     /helloWorld                 controllers.HomeController.helloWorld
 GET     /json                       controllers.HomeController.toJson
 
 # ExampleController showing diferent HTTP status
-GET     /status200                       controllers.StatusExampleController.status200
-GET     /status401                       controllers.StatusExampleController.status401
-GET     /status500                       controllers.StatusExampleController.status500
+GET     /status200                  controllers.StatusExampleController.status200
+GET     /status401                  controllers.StatusExampleController.status401
+GET     /status500                  controllers.StatusExampleController.status500
 
+# PDF File
+GET     /downloadPDF                controllers.StatusExampleController.downloadPDF
 
-GET     /downloadPDF                     controllers.StatusExampleController.downloadPDF
+# Diferent HTTP Method
+GET      /getPerson                 controllers.RoutingController.getPerson(id: String?="002")
+POST     /getPerson/:id             controllers.RoutingController.getPerson(id: String)
+PUT      /getOnePerson              controllers.RoutingController.getOnePerson
+DELETE   /getOnePerson              controllers.RoutingController.getOnePerson
+PATCH    /getOnePerson              controllers.RoutingController.getOnePerson
+
+# Header
+GET     /getHeader               controllers.RoutingController.getHeader(name: String?="own-header")
+
+# Cookie
+GET     /getCookie               controllers.RoutingController.getCookie(name: String?="own-cookie")
