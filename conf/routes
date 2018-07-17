@@ -34,7 +34,10 @@ DELETE   /getOnePerson              controllers.RoutingController.getOnePerson
 PATCH    /getOnePerson              controllers.RoutingController.getOnePerson
 
 # Header
-GET     /getHeader               controllers.RoutingController.getHeader(name: String?="own-header")
+GET     /getHeader                  controllers.RoutingController.getHeader(name: String?="own-header")
 
 # Cookie
-GET     /getCookie               controllers.RoutingController.getCookie(name: String?="own-cookie")
+GET     /getCookie                  controllers.RoutingController.getCookie(name: String?="own-cookie")
+
+# CompositionActions
+GET     /auth                       controllers.ActionCompositionController.authenticated

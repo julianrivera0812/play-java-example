@@ -28,7 +28,8 @@
   <logger name="application" level="DEBUG" />
 
   <logger name="akka.actor" level="INFO" />
-
+  <logger name="play.mvc.Action" level="DEBUG" />
+  
   <!-- Off these ones as they are annoying, and anyway we manage configuration ourselves -->
   <logger name="com.gargoylesoftware.htmlunit.javascript" level="OFF" />
 

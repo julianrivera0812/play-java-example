@@ -38,7 +38,7 @@ public class HomeController extends Controller {
 	}
     
     public Result helloWorld() {
-        return ok("Hello world!");
+        return ok("<h1>Hello World!</h1>").as("text/html");
     }
     
     public Result toJson() {

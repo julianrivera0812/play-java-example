@@ -1,5 +1,6 @@
 package controllers;
 
+import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -28,18 +29,22 @@ public class RoutingController extends Controller {
 		StringBuilder header = new StringBuilder().append("HEADER ").append(name).append(" -> ")
 				.append(request().getHeaders().get(name).orElse("NO HEADER"));
 		System.out.println(header.toString());
+		response().setHeader("HEADER-RESPONSE", "Header en la respuesta");
 		return ok(header.toString());
 	}
 
 	public Result getOnePerson() {
 		return ok(peopleMap.get("001"));
 	}
-	
+
 	public Result getCookie(String name) {
 		Cookie cookie = request().cookie(name);
 		StringBuilder cookieString = new StringBuilder().append("COOKIE ").append(name).append(" -> ")
-				.append(cookie == null ? "NO COOKIE": cookie.value());
+				.append(cookie == null ? "NO COOKIE" : cookie.value());
 		System.out.println(cookieString.toString());
+		response().setCookie(Cookie.builder("COOKIE-RESPONSE", "C00K13R3SP0NS3").withMaxAge(Duration.ofSeconds(360))
+				.withPath("/").withDomain("localhost").withSecure(false).withHttpOnly(false)
+				.withSameSite(Cookie.SameSite.STRICT).build());
 		return ok(cookieString.toString());
 	}
 }
