@@ -49,3 +49,8 @@ GET     /error                      controllers.HomeController.serverError
 GET     /future                     controllers.FutureExampleController.index
 GET     /timeout                    controllers.FutureExampleController.timeout
 GET     /delayed                    controllers.FutureExampleController.delayedResult
+
+# JSON
++nocsrf
+POST   	 /createPerson              controllers.RoutingController.createPerson
+GET    	 /jsonW                     controllers.RoutingController.workWithJson

@@ -1,9 +1,15 @@
 package controllers;
 
 import java.time.Duration;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import com.fasterxml.jackson.databind.JsonNode;
+
+import model.Person;
+import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Http.Cookie;
 import play.mvc.Result;
@@ -46,5 +52,54 @@ public class RoutingController extends Controller {
 				.withPath("/").withDomain("localhost").withSecure(false).withHttpOnly(false)
 				.withSameSite(Cookie.SameSite.STRICT).build());
 		return ok(cookieString.toString());
+	}
+
+	public Result createPerson() {
+
+		JsonNode jsonPerson = request().body().asJson();
+
+		if (jsonPerson == null) {
+			return badRequest("Se esperaba un Json");
+		}
+
+		String firstname = jsonPerson.findPath("firstname").textValue();
+
+		if (firstname == null) {
+			return badRequest("El parámetro [firstname] es requerido");
+		}
+
+		Person person = Json.fromJson(jsonPerson, Person.class);
+
+		return ok(person == null ? "BAD" : person.toString());
+	}
+
+	public Result workWithJson() {
+		List<Person> personList = Arrays.asList(new Person(1, "Persona", "No 1"), new Person(2, "Persona", "No 2"),
+				new Person(3, "Persona", "No 3"));
+
+		/* Convertir objeto a Json */
+		JsonNode jsonPersonList = Json.toJson(personList);
+		System.out.println(jsonPersonList.toString());
+
+		/* Obtener una propiedad especifica de la lista de JsonNode */
+		List<JsonNode> values = jsonPersonList.findValues("identification");
+		for (JsonNode jsonNode : values) {
+			System.out.println(jsonNode.asLong());
+		}
+
+		/* parsear un string que representa un Json a JsonNode */
+		JsonNode jsonParsed = Json.parse(
+				"[{\"identification\":1,\"firstname\":\"Persona\",\"lastname\":\"No 1\"},{\"identification\":2,\"firstname\":\"Persona\",\"lastname\":\"No 2\"},{\"identification\":3,\"firstname\":\"Persona\",\"lastname\":\"No 3\"}]");
+
+		if (jsonParsed.isArray()) {
+			for (JsonNode jsonNode : jsonParsed) {
+				System.out.println("JsonNode -> " + jsonNode.toString());
+				/* Obtener el objeto a partir del JsonNode */
+				Person person = Json.fromJson(jsonNode, Person.class);
+				System.out.println("PERSON -> " + person);
+			}
+		}
+
+		return ok(jsonPersonList);
 	}
 }
