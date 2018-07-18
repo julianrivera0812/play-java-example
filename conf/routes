@@ -44,3 +44,8 @@ GET     /auth                       controllers.ActionCompositionController.auth
 
 # ErrorHandler
 GET     /error                      controllers.HomeController.serverError
+
+# HTTP Async
+GET     /future                     controllers.FutureExampleController.index
+GET     /timeout                    controllers.FutureExampleController.timeout
+GET     /delayed                    controllers.FutureExampleController.delayedResult
