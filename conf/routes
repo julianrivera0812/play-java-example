@@ -64,3 +64,8 @@ GET    	 /blocking/getPeople   	    controllers.PersonController.getPeopleBlocki
 +nocsrf
 POST   	 /nonBlocking/createPerson    	controllers.PersonController.createPersonNonBlocking
 GET    	 /nonBlocking/getPeople   	    controllers.PersonController.getPeopleNonBlocking
+
+# uploadFile
+GET		/formUpload					controllers.UploadFileController.render
++nocsrf
+POST	/uploadFile					controllers.UploadFileController.uploadFile

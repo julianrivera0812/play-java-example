@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>UploadFile</title>
+</head>
+<body>
+@helper.form(action = routes.UploadFileController.uploadFile, 'enctype -> "multipart/form-data") {
+
+    <input type="file" name="fileData">
+
+    <p>
+        <input type="submit">
+    </p>
+}
+</body>
+</html>
