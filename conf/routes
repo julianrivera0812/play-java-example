@@ -54,3 +54,13 @@ GET     /delayed                    controllers.FutureExampleController.delayedR
 +nocsrf
 POST   	 /createPerson              controllers.RoutingController.createPerson
 GET    	 /jsonW                     controllers.RoutingController.workWithJson
+
+# Blocking operations
++nocsrf
+POST   	 /blocking/createPerson    	controllers.PersonController.createPersonBlocking
+GET    	 /blocking/getPeople   	    controllers.PersonController.getPeopleBlocking
+
+# Non blocking operations
++nocsrf
+POST   	 /nonBlocking/createPerson    	controllers.PersonController.createPersonNonBlocking
+GET    	 /nonBlocking/getPeople   	    controllers.PersonController.getPeopleNonBlocking
